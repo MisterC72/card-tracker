@@ -6,7 +6,14 @@ from .models import CustomUser
 
 # Display username and email in the admin site
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ["username", "first_name", "last_name", "email", "is_superuser"]
+    list_display = [
+        "username",
+        "first_name",
+        "last_name",
+        "nickname",
+        "email",
+        "is_superuser",
+    ]
 
 
 # Register the CustomUser model with the CustomUserAdmin class
