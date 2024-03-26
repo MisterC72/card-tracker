@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "transactions.apps.TransactionsConfig",
     "reports.apps.ReportsConfig",
     # third-party apps
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Custom user model
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Crispy forms
+CRISPY_TEMPLATE_PACK = "bootstrap5"
