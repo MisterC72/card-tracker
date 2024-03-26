@@ -1,0 +1,107 @@
+# Docker stuff#
+
+# Build the containers #
+docker-compose up -d --build
+
+docker-compose -f .\docker-compose-production.yml up -d --build
+
+# stop the containers #
+docker-compose down
+
+# Restart containers
+docker-compose up -d # Lose the -d to display realtime console feedback #
+
+# View running containers #
+docker ps
+
+# View all containers #
+docker ps -a
+
+# pip freeze #
+docker-compose exec web pip freeze
+
+# Django stuff #
+
+# Create an app #
+docker-compose exec web python manage.py startapp APPNAME
+
+# Make migrations #
+docker-compose exec web python manage.py makemigrations APPNAME
+
+# Migrate #
+docker-compose exec web python manage.py migrate
+
+
+# Run unit tests (APPNAME optional)
+docker-compose exec web python manage.py test APPNAME
+
+# Create superuser #
+docker-compose exec web python manage.py createsuperuser
+
+# Collect static files #
+docker-compose exec web python manage.py collectstatic
+
+# Create a new project #
+docker-compose exec web django-admin startproject PROJECTNAME .
+
+# Create a new app #
+docker-compose exec web python manage.py startapp APPNAME
+
+# Create a new migration #
+docker-compose exec web python manage.py makemigrations
+
+# Run migrations #
+docker-compose exec web python manage.py migrate
+
+# Run tests #
+docker-compose exec web python manage.py test
+
+# Run tests with coverage #
+docker-compose exec web coverage run --source='.' manage.py test
+
+# View coverage report #
+docker-compose exec web coverage report
+
+# View coverage report in html #
+docker-compose exec web coverage html
+
+# Run flake8 #
+docker-compose exec web flake8
+
+# Run curlylint #
+docker-compose exec web curlylint --parse-only --verbose  templates
+
+# Run black #
+docker-compose exec web black .
+
+# Run isort #
+docker-compose exec web isort .
+
+# Run bandit #
+docker-compose exec web bandit -r .
+
+# Run safety #
+docker-compose exec web safety check
+
+
+
+username: uizmac
+email: mark.castles@nottingham.ac.uk
+pw: Forest5!
+
+# view console output
+docker-compose logs
+
+# Git stuff
+git status
+git add .
+git commit -m 'Description here'
+# view previous commits
+git log
+
+# dhtml
+djhtml templates\_base.html # Single file
+djhtml templates # All files in folder
+
+# curlylint
+docker-compose exec web curlylint --parse-only --verbose  templates
