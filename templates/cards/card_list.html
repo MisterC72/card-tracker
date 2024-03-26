@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">All Cards</h1>
+
+    <div class="row">
+        {% for card in cards %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ card.provider }}</h5>
+                    <p class="card-text">Balance: £{{ card.balance }}</p>
+                    <p class="card-text">Limit: £{{ card.limit }}</p>
+                    <p class="card-text">{{ card.is_zero_percent|yesno:"0% Interest Rate:Yes,0% Interest Rate:No" }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
