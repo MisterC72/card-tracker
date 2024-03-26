@@ -18,8 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
+from cards.views import CardListView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls, name="admin"),
+    path("", CardListView.as_view(), name="card_list"),
     path("cards/", include("cards.urls")),
 ]
