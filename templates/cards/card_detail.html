@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <h5 class="card-header">{{ card.provider }} Details</h5>
+        <div class="card-body">
+            <h5 class="card-title">Balance: £{{ card.balance }}</h5>
+            <p class="card-text">Limit: £{{ card.limit }}</p>
+            <p class="card-text">0% Interest Rate: {{ card.is_zero_percent|yesno:"Yes,No" }}</p>
+            {% if card.is_zero_percent %}
+                <p class="card-text">0% Rate Ends On: {{ card.zero_percent_end|date:"N j, Y" }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Optional: Add navigation buttons -->
+    <div class="mt-4">
+        <a href="#" class="btn btn-primary">Add a Transaction</a>
+        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="{% url 'card_list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+{% endblock %}

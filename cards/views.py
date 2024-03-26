@@ -34,3 +34,10 @@ class CardCreateView(CreateView):
     # redirect to the card list view after creating a new card
     def get_success_url(self):
         return reverse("card_list")
+
+
+# Create a new view called CardDetailView
+class CardDetailView(DetailView):
+    model = Card
+    template_name = "cards/card_detail.html"
+    context_object_name = "card"
