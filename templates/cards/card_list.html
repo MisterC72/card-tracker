@@ -7,12 +7,19 @@
     <div class="row">
         {% for card in cards %}
         <div class="col-md-4 mb-4">
-            <div class="card">
+            <!-- Use Bootstrap classes for background color -->
+            <div class="card {% if card.is_zero_percent %}bg-success{% else %}bg-danger{% endif %} text-white">
                 <div class="card-body">
                     <h5 class="card-title">{{ card.provider }}</h5>
                     <p class="card-text">Balance: £{{ card.balance }}</p>
                     <p class="card-text">Limit: £{{ card.limit }}</p>
-                    <p class="card-text">{{ card.is_zero_percent|yesno:"0% Interest Rate:Yes,0% Interest Rate:No" }}</p>
+                    <p class="card-text">
+                        {% if card.is_zero_percent %}
+                            0% Interest Rate: Yes
+                        {% else %}
+                            0% Interest Rate: No
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
