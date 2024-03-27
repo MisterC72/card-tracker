@@ -24,4 +24,5 @@ urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
     path("", CardListView.as_view(), name="card_list"),
     path("cards/", include("cards.urls")),
+    path("transactions/", include("transactions.urls")),
 ]

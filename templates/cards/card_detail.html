@@ -16,7 +16,7 @@
 
     <!-- Optional: Add navigation buttons -->
     <div class="mt-4">
-        <a href="#" class="btn btn-primary">Add a Transaction</a>
+        <a href="{% url 'add_transaction' card_id=card.pk %}" class="btn btn-primary">Add Transaction</a>
         <a href="{% url 'card_update' card.pk %}" class="btn btn-primary">Edit</a>
         <a href="{% url 'card_list' %}" class="btn btn-secondary">Back to List</a>
     </div>
