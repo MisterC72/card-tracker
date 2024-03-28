@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  web:
+    build:
+      context: .
+      args:
+        - GITHUB_REPO_URL=https://github.com/MisterC72/card-tracker.git
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+      - static_volume:/code/static
+      - media_volume:/code/media
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=myproject.settings
+
+volumes:
+  static_volume:
+  media_volume:
