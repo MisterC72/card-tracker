@@ -3,7 +3,9 @@ from django.db import models
 
 # Transaction model
 class Transaction(models.Model):
-    card = models.ForeignKey("cards.Card", on_delete=models.CASCADE)
+    card = models.ForeignKey(
+        "cards.Card", related_name="transactions", on_delete=models.CASCADE
+    )
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     type = models.CharField(

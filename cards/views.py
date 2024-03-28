@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-# import views from django
+from django.db.models import Sum
 from django.views.generic import (
     ListView,
     DetailView,
@@ -8,14 +7,8 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-
-# import reverse from django.urls
 from django.urls import reverse
-
-# import the Card model
 from .models import Card
-
-# import the CardForm
 from .forms import CardForm
 
 
@@ -24,15 +17,22 @@ class CardListView(ListView):
     model = Card
     template_name = "cards/card_list.html"
     context_object_name = "cards"
-    # order the cards by the highest balance
     ordering = ["-balance"]
 
-    # get total balance of all cards
+    def get_queryset(self):
+        # Filter the queryset to only include active cards and order by balance
+        queryset = (
+            super().get_queryset().filter(is_active=True).order_by(self.ordering[0])
+        )
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # filter the queryset to only include active cards
-        context["cards"] = Card.objects.filter(is_active=True)
-        context["total_balance"] = sum([card.balance for card in context["cards"]])
+        # Now, since context['cards'] is already ordered and filtered, we calculate the total balance
+        # Using aggregate(Sum()) to calculate total balance efficiently
+        context["total_balance"] = Card.objects.filter(is_active=True).aggregate(
+            total=Sum("balance")
+        )["total"]
         return context
 
 
